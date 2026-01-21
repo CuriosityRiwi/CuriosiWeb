@@ -6,16 +6,16 @@ const deleteButton = document.querySelector(".delete");
 
 // list prueva
 const products = [
-    {
-        id: 2,
-        image:"./img/icons/icon-tenis.png",
-        name:"zapato",
-        description:"zapato de cuero",
-        price: 550442,
-        stock: 5,
-        viewStatus: "publicado",
-    }
-]
+  {
+    id: 2,
+    image: "./img/icons/icon-tenis.png",
+    name: "zapato",
+    description: "zapato de cuero",
+    price: 550442,
+    stock: 5,
+    viewStatus: "publicado",
+  },
+];
 
 // Guardo datos en localStorage
 localStorage.setItem("products", JSON.stringify(products));
@@ -25,9 +25,9 @@ const data = localStorage.getItem("products");
 const productsList = data ? JSON.parse(data) : [];
 
 // Para mostrar los productos
-function renderProducts(){
-    productsList.forEach(product => {
-        const row = `
+function renderProducts() {
+  productsList.forEach((product) => {
+    const row = `
             <tr>
                 <td><img src="${product.image}" alt="${product.name}" width="50"></td>
                 <td>${product.name}</td>
@@ -41,20 +41,19 @@ function renderProducts(){
                 </td>
             </tr>
         `;
-        document.getElementById("list").innerHTML += row;
-    }); 
+    document.getElementById("list").innerHTML += row;
+  });
 }
 
 // Acciones de Botones
 
-function addProduct (){
-
+function addProduct() {
+  addProductButton.addEventListener("click", function () {
+    window.open("./addProduct.html", "_self");
+  });
 }
 
-function updateProduct (){
-
-}
-function deleteProduct (){
-
-}
+function updateProduct() {}
+function deleteProduct() {}
 renderProducts();
+addProduct();
