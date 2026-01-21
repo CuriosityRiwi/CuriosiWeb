@@ -1,0 +1,65 @@
+/*Styles de Login*/
+
+
+/*Styles de Landing*/
+/*Header*/
+.navbar-brand span {
+    letter-spacing: -0.5px;
+    color: #1a1a1a;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    color: #333;
+}
+
+/* Ajuste para el icono de usuario */
+.bi-person-fill {
+    font-size: 1.1rem;
+}
+
+/*Main*/
+.btn-success {
+    background-color: #00ff7f ;
+    border-color: #00ff7f ;
+    color: #000 ;
+    font-weight: 600;
+}
+
+.badge .bg-success {
+    background-color: #00ff7f ;
+    color: #000;
+}
+
+.card-img-top {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+
+/*Footer*/
+footer {
+    font-family: 'Inter', sans-serif;
+}
+
+footer .input-group .form-control:focus {
+    background-color: #f1f1f1;
+}
+
+
+/*Landing info products*/
+.ls-wide {
+    letter-spacing: 1.5px;
+}
+
+.btn-outline-secondary {
+    border-color: #dee2e6;
+    color: #495057;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+footer {
+    font-size: 1.1rem;
+}
