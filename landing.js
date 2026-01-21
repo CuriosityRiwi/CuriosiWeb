@@ -1,18 +1,18 @@
-// Variables Glovales
+// Variables Globales
 const addShoes = document.querySelector(".list-shoes");
 
 const listShoes = [
   {
-    img: "url",
+    img: "./img/icons/icon-tenis.png",
     name: "adidas Performance",
     description: "Tenis adidas Performance Galaxy 7 Azul",
-    price: 223.9,
+    price: 223900,
   },
   {
-    img: "url",
+    img: "./img/icons/icon-tenis.png",
     name: "adidas Performance",
     description: "Tenis adidas Performance Galaxy 7 Azul",
-    price: 223.9,
+    price: 223900,
   },
 ];
 // Guardar Data Local en el localstorage
@@ -27,7 +27,7 @@ function render() {
   const shoes = data ? JSON.parse(data) : [];
 
   console.log(shoes);
-
+  // Recore la data que esta en el localStorage y la muestra en el landing
   shoes.forEach((shoes) => {
     html = `
             <div class="col-md-3">
@@ -52,7 +52,7 @@ function render() {
                 </div>
                 <!-- Footer -->
                 <div class="d-flex justify-content-between align-items-center">
-                  <div>${shoes.price}</div>
+                  <div>$ ${shoes.price}</div>
                   <a href="#" class="btn btn-primary rounded-3"
                     >Whatsapp Info</a
                   >
@@ -60,7 +60,8 @@ function render() {
               </div>
             </div>
   `;
-    addShoes.innerHTML += html;
+  // Inserta el HTML en el landing
+  addShoes.innerHTML += html;
   });
 }
 
