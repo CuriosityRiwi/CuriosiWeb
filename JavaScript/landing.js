@@ -25,7 +25,7 @@ const renderProducts = () => {
                     <h6 class="fw-bold mt-1">${p.name}</h6>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="fw-bold fs-5">$${p.price}</span>
-                        <button class="btn btn-outline-dark btn-sm rounded-pill px-3">View Info </button>
+                        <a href="./landingInformation.html" class="btn btn-outline-dark btn-sm rounded-pill px-3 ">View Info </a>
                     </div>
                 </div>
             </div>
