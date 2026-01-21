@@ -1,0 +1,26 @@
+.btn-success {
+    background-color: #00ff7f ;
+    border-color: #00ff7f ;
+    color: #000 ;
+    font-weight: 600;
+}
+
+.badge.bg-success {
+    background-color: #00ff7f ;
+    color: #000;
+}
+
+.card-img-top {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+
+/*Footer*/
+footer {
+    font-family: 'Inter', sans-serif;
+}
+
+footer .input-group .form-control:focus {
+    background-color: #f1f1f1;
+}
