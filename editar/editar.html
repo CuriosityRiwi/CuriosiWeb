@@ -37,28 +37,24 @@
             <h5 class="fw-bold mb-3">Basic Information</h5>
 
             <div class="mb-3">
-              <label class="form-label">Product Name</label>
+              <label class="form-label" id="productName">Product Name</label>
               <input type="text" class="form-control">
             </div>
 
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label class="form-label">Category</label>
+                <label class="form-label" id="productCategory">Category</label>
                 <select class="form-select">
-                  <option>Tennis Rackets</option>
-                  <option>Shoes</option>
+                  <option>men's Gear</option>
+                  <option>women's Gear</option>
                   <option>Accessories</option>
                 </select>
               </div>
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Brand</label>
-                <input type="text" class="form-control">
-              </div>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Product Description</label>
+              <label class="form-label" id="productDescription">Product Description</label>
               <textarea class="form-control" rows="4"></textarea>
             </div>
           </div>
@@ -71,7 +67,7 @@
 
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label class="form-label">Price ($)</label>
+                <label class="form-label" id="productPrice">Price ($)</label>
                 <input type="number" class="form-control">
               </div>
 
@@ -85,7 +81,7 @@
         <!-- IMAGES -->
         <div class="card mb-4">
           <div class="card-body">
-            <h5 class="fw-bold mb-3">Product Images</h5>
+            <h5 class="fw-bold mb-3" id="productImage">Product Images</h5>
 
             <input type="file" class="form-control">
           </div>
@@ -94,7 +90,7 @@
         <!-- ACTIONS -->
         <div class="d-flex justify-content-end gap-2">
           <button type="reset" class="btn btn-outline-secondary">Discard</button>
-          <button type="submit" class="btn btn-success">Save Product</button>
+          <button type="submit" class="btn btn-success" id="sumbitBtn">Save Product</button>
         </div>
 
       </form>
@@ -119,5 +115,6 @@
   </div>
 </div>
 
+<script src="./editar.js"></script>
 </body>
 </html>
