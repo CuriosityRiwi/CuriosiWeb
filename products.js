@@ -61,17 +61,19 @@ function renderProducts() {
 // Detetor de Eventos
 
 document.addEventListener("click", function (event) {
-  // Traer id al ser click
+
+  // Add
+  if (event.target.classList.contains("add")) {
+    window.location = "./addProduct.html"
+  }
+    // Traer id al ser click
   let fila = event.target.closest("tr");
   let id = fila.children[0].textContent.trim();
   //   console.log(id);
-  // Add
-  if (event.target.classList.contains("add")) {
-    window.open("./addProduct.html", "_self");
-  }
   //   Update
   if (event.target.classList.contains("update")) {
-    window.open("./addProduct.html", "_self");
+    // window.open("./addProduct.html", "_self");
+    window.location = "./addProduct.html"
   }
   //   Delete
   if (event.target.classList.contains("delete")) {
@@ -101,6 +103,7 @@ document.addEventListener("click", function (event) {
     // Volver a renderizar la tabla actualizada
     renderProducts();
   }
+
 });
 
 // Renderizar productos al cargar la página
