@@ -91,12 +91,5 @@ const renderProducts = () => {
   });
 };
 
-// Función para WhatsApp
-const abrirWpp = (coleccion) => {
-  const tel = "57300000000";
-  const msg = `Hola! Estoy interesado en ver la nueva colección de ${coleccion}.`;
-  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
-};
-
 // Ejecutar al cargar
 renderProducts();
