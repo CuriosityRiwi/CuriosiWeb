@@ -37,14 +37,23 @@ function loginExitoso() {
     Swal.fire({
         title: "Correcto",
         text: "You clicked the button!",
-        icon: "success"
+        icon: "success",
+        timer: 1500
     }); 
-
-    //Falta guardar en el Local
+    
+    guardarLocalStorage();
 
     setTimeout(() => {
-        window.location = "AQUI VA EL LINK DE LA PAGINA DEL DASH";
-    }, 1000);
+        window.location = "./landing.html";
+    }, 1500);
+}
+
+function guardarLocalStorage() {
+    if (localStorage.getItem("session") === "yes") {
+        return;
+    } else {        
+        localStorage.setItem("session", "yes");
+    }
 }
 
 function loginFallido() {
@@ -68,8 +77,12 @@ function manejarLogin(e) {
 btnVisible.addEventListener('click', () => {
     if (inputPassword.type === 'password') {
         inputPassword.type = 'text';
+        btnVisible.classList.add('bi-eye-slash');
+        btnVisible.classList.remove('bi-eye');
     } else {
-         inputPassword.type = 'password';
+        inputPassword.type = 'password';
+        btnVisible.classList.remove('bi-eye-slash');
+        btnVisible.classList.add('bi-eye');
     }
 })
 
