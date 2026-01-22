@@ -1,19 +1,76 @@
 // Main Landing
-const products = [
-    { name: "AeroPro Strike G5", category: "RACKETS", price: 249.00, img: "./img/shoes/img-tenis-man (1).jpg" },
-    { name: "SwiftCourt Elite X", category: "FOOTWEAR", price: 129.99, img: "./img/shoes/img-tenis-man (2).jpg" },
-    { name: "ProTour 12-Pack Bag", category: "ACCESSORIES", price: 85.50, img: "./img/shoes/img-tenis-woman (1).jpg" },
-    { name: "Championship Extra Duty", category: "BALLS", price: 14.00, img: "./img/shoes/img-tenis-woman (2).jpg" }
-];
 
+// Variables Globales
 const container = document.getElementById("list-shoes");
 
-//Renderiza la informacion que trae de el contenedor de lista-cards
-const renderProducts = () => {    
-    let html = "";
+// List Prueva
+const products = [
+  {
+    id: 1,
+    name: "AeroPro Strike G5",
+    description: "Tenis adidas Performance Galaxy 7 Azul",
+    brand: "Nike",
+    price: 249.0,
+    img: "./img/shoes/img-tenis-man (1).jpg",
+    status: "public",
+    stock: 5,
+  },
+  {
+    id: 2,
+    name: "SwiftCourt Elite X",
+    description: "Tenis adidas Performance Galaxy 7 Azul",
+    brand: "Adida",
+    price: 129.99,
+    img: "./img/shoes/img-tenis-man (2).jpg",
+    status: "public",
+    stock: 5,
+  },
+  {
+    id: 3,
+    name: "ProTour 12-Pack Bag",
+    description: "Tenis adidas Performance Galaxy 7 Azul",
+    brand: "Puma",
+    price: 85.5,
+    img: "./img/shoes/img-tenis-woman (1).jpg",
+    status: "public",
+    stock: 5,
+  },
+  {
+    id: 4,
+    name: "Championship Extra Duty",
+    description: "Tenis adidas Performance Galaxy 7 Azul",
+    brand: "Vans",
+    price: 14.0,
+    img: "./img/shoes/img-tenis-woman (2).jpg",
+    status: "notPublic",
+    stock: 5,
+  },
+];
+// localStorage.setItem("shoes", JSON.stringify(products));
+// Guardar Data Local en el localstorage
+cargardatos();
 
-    products.forEach(p => {
-        container.innerHTML += `
+function cargardatos() {
+  if (!localStorage.getItem("shoes")) {
+    localStorage.setItem("shoes", JSON.stringify(products));
+  } else {
+    return;
+  }
+}
+
+//Renderiza la informacion que trae de el contenedor de lista-cards
+const renderProducts = () => {
+  // Trae los datos del localStorage
+  const data = localStorage.getItem("shoes");
+  const shoes = data ? JSON.parse(data) : [];
+
+  // limpia para que no se repitan
+  let html = "";
+
+  shoes.forEach((p) => {
+    // Para mostrar solo los producto publicos
+    if (p.status !== "notPublic") {
+      container.innerHTML += `
         <div class="col-12 col-md-6 col-lg-3">
             <div class="card border rounded-2 position-relative">
                 <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle" style="width: 35px; height: 35px; padding: 0;" padding: 0;">
@@ -21,7 +78,7 @@ const renderProducts = () => {
                 </button>
                 <img src="${p.img}" class="card-img-top" alt="${p.name}" object-fit: contain;">
                 <div class="card-body">
-                    <small class="text-success fw-bold">${p.category}</small>
+                    <small class="text-success fw-bold">${p.brand}</small>
                     <h6 class="fw-bold mt-1">${p.name}</h6>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="fw-bold fs-5">$${p.price}</span>
@@ -30,24 +87,16 @@ const renderProducts = () => {
                 </div>
             </div>
         </div>`;
-    });
+    }
+  });
 };
 
 // Función para WhatsApp
 const abrirWpp = (coleccion) => {
-    const tel = "57300000000";
-    const msg = `Hola! Estoy interesado en ver la nueva colección de ${coleccion}.`;
-    window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
+  const tel = "57300000000";
+  const msg = `Hola! Estoy interesado en ver la nueva colección de ${coleccion}.`;
+  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
 };
 
 // Ejecutar al cargar
 renderProducts();
-
-
-
-
-
-
-
-
-
