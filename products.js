@@ -5,29 +5,30 @@ const updateButton = document.querySelector(".update");
 const deleteButton = document.querySelector(".delete");
 
 // list prueva
-let products = [
-  {
-    id: 2,
-    image: "./img/icons/icon-tenis.png",
-    name: "zapato",
-    description: "zapato de cuero",
-    price: 550442,
-    stock: 5,
-    viewStatus: "publicado",
-  },
-  {
-    id: 3,
-    image: "./img/icons/icon-tenis.png",
-    name: "zapato",
-    description: "zapato de cuero",
-    price: 550442,
-    stock: 5,
-    viewStatus: "Notpublicado",
-  },
-];
+
+// let products = [
+//   {
+//     id: 2,
+//     image: "./img/icons/icon-tenis.png",
+//     name: "zapato",
+//     description: "zapato de cuero",
+//     price: 550442,
+//     stock: 5,
+//     viewStatus: "publicado",
+//   },
+//   {
+//     id: 3,
+//     image: "./img/icons/icon-tenis.png",
+//     name: "zapato",
+//     description: "zapato de cuero",
+//     price: 550442,
+//     stock: 5,
+//     viewStatus: "Notpublicado",
+//   },
+// ];
 
 // Guardo datos en localStorage
-localStorage.setItem("products", JSON.stringify(products));
+// localStorage.setItem("products", JSON.stringify(products));
 
 // Traer datos del localStorage
 const data = localStorage.getItem("products");
@@ -45,7 +46,7 @@ function renderProducts() {
                 <td>${product.description}</td>
                 <td>${product.price}</td>
                 <td>${product.stock}</td>
-                <td>${product.viewStatus}</td>
+                <td>${product.status}</td>
                 <td>
                     <button class="btn btn-sm btn-warning update">Edit</button>
                     <button class="btn btn-sm btn-danger delete">Delete</button>
@@ -61,19 +62,18 @@ function renderProducts() {
 // Detetor de Eventos
 
 document.addEventListener("click", function (event) {
-
   // Add
   if (event.target.classList.contains("add")) {
-    window.location = "./addProduct.html"
+    window.location = "./addProduct.html";
   }
-    // Traer id al ser click
+  // Traer id al ser click
   let fila = event.target.closest("tr");
   let id = fila.children[0].textContent.trim();
   //   console.log(id);
   //   Update
   if (event.target.classList.contains("update")) {
     // window.open("./addProduct.html", "_self");
-    window.location = "./addProduct.html"
+    window.location = "./addProduct.html";
   }
   //   Delete
   if (event.target.classList.contains("delete")) {
@@ -88,7 +88,7 @@ document.addEventListener("click", function (event) {
   // Publicar
   if (event.target.classList.contains("public")) {
     productsList = productsList.map((e) =>
-      e.id == id ? { ...e, viewStatus: "publicado" } : e,
+      e.id == id ? { ...e, status: "public" } : e,
     );
     localStorage.setItem("products", JSON.stringify(productsList));
     // Volver a renderizar la tabla actualizada
@@ -97,13 +97,12 @@ document.addEventListener("click", function (event) {
   // No Publicar
   if (event.target.classList.contains("notPublic")) {
     productsList = productsList.map((e) =>
-      e.id == id ? { ...e, viewStatus: "no publicado" } : e,
+      e.id == id ? { ...e, status: "no publicado" } : e,
     );
     localStorage.setItem("products", JSON.stringify(productsList));
     // Volver a renderizar la tabla actualizada
     renderProducts();
   }
-
 });
 
 // Renderizar productos al cargar la página

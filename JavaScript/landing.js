@@ -1,9 +1,12 @@
 // Main Landing
 
-// Variables Globales
+// Contenedor
 const container = document.getElementById("list-shoes");
+if (!container) {
+  console.error("No se encontró el contenedor list-shoes");
+}
 
-// List Prueva
+// Productos iniciales
 const products = [
   {
     id: 1,
@@ -42,61 +45,63 @@ const products = [
     brand: "Vans",
     price: 14.0,
     img: "./img/shoes/img-tenis-woman (2).jpg",
-    status: "notPublic",
+    status: "public",
     stock: 5,
   },
 ];
-// localStorage.setItem("shoes", JSON.stringify(products));
-// Guardar Data Local en el localstorage
-cargardatos();
 
-function cargardatos() {
-  if (!localStorage.getItem("shoes")) {
-    localStorage.setItem("shoes", JSON.stringify(products));
-  } else {
-    return;
+// Cargar datos SOLO si no existen
+function cargarDatos() {
+  const data = localStorage.getItem("products");
+  if (!data) {
+    localStorage.setItem("products", JSON.stringify(products));
   }
 }
 
-//Renderiza la informacion que trae de el contenedor de lista-cards
-const renderProducts = () => {
-  // Trae los datos del localStorage
-  const data = localStorage.getItem("shoes");
+// Renderizar productos
+function renderProducts() {
+  const data = localStorage.getItem("products");
   const shoes = data ? JSON.parse(data) : [];
 
-  // limpia para que no se repitan
-  let html = "";
+  // Limpiar contenedor (CLAVE)
+  container.innerHTML = "";
 
   shoes.forEach((p) => {
-    // Para mostrar solo los producto publicos
-    if (p.status !== "notPublic") {
+    if (p.status === "public") {
       container.innerHTML += `
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card border rounded-2 position-relative">
-                <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle" style="width: 35px; height: 35px; padding: 0;" padding: 0;">
-                    <i class="bi bi-heart"></i>
-                </button>
-                <img src="${p.img}" class="card-img-top" alt="${p.name}" object-fit: contain;">
-                <div class="card-body">
-                    <small class="text-success fw-bold">${p.brand}</small>
-                    <h6 class="fw-bold mt-1">${p.name}</h6>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold fs-5">$${p.price}</span>
-                        <a href="./landingInformation.html" class="btn btn-outline-dark btn-sm rounded-pill px-3 ">View Info </a>
-                    </div>
-                </div>
+          <div class="card border rounded-2 position-relative">
+            <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle"
+              style="width: 35px; height: 35px; padding: 0;">
+              <i class="bi bi-heart"></i>
+            </button>
+
+            <img src="${p.img}" class="card-img-top" alt="${p.name}" style="object-fit: contain;">
+
+            <div class="card-body">
+              <small class="text-success fw-bold">${p.brand}</small>
+              <h6 class="fw-bold mt-1">${p.name}</h6>
+
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fw-bold fs-5">$${p.price}</span>
+                <a href="./landingInformation.html" class="btn btn-outline-dark btn-sm rounded-pill px-3">
+                  View Info
+                </a>
+              </div>
             </div>
+          </div>
         </div>`;
     }
   });
-};
+}
 
-// Función para WhatsApp
-const abrirWpp = (coleccion) => {
+// WhatsApp
+function abrirWpp(coleccion) {
   const tel = "57300000000";
   const msg = `Hola! Estoy interesado en ver la nueva colección de ${coleccion}.`;
   window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
-};
+}
 
-// Ejecutar al cargar
+// Ejecutar
+cargarDatos();
 renderProducts();
