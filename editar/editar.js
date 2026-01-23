@@ -1,27 +1,59 @@
 const form = document.getElementById("productForm");
 
-form.addEventListener("submitBtn", function(e) {
-    e.preventDefault(); // evitar sobrecargo en la pagina
-})
+const nameInput = document.getElementById("productName");
+const categoryInput = document.getElementById("productCategory");
+const descriptionInput = document.getElementById("productDescription");
+const priceInput = document.getElementById("productPrice");
 
-const product = {
-    id: Date.now(), // id unico
-    name: DocumentTimeline.getElementById("productName").value,
-    price: DocumentTimeline.getElementById("productPrice").value,
-    desciption: DocumentTimeline.getElementById("productDescription").value
-};
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
 
-//traer productos existentes:
-let products = JSON.parse(localStorage.getItem(products)) || [];
-
-//producto nuevo
-
-products.push(product);
-
-localStorage.setItem("products", JSON.stringify(products));
-alert("producto agregado");
-
-window.location.href ="../dashboard/dash.html/";
+function getProducts() {
+  return JSON.parse(localStorage.getItem("products")) || [];
+}
 
 
+if (productId) {
+  const products = getProducts();
+  const product = products.find(p => p.id == productId);
 
+  if (product) {
+    nameInput.value = product.name;
+    categoryInput.value = product.category;
+    descriptionInput.value = product.description;
+    priceInput.value = product.price;
+  }
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  let products = getProducts();
+
+  if (productId) {
+    
+    products = products.map(p =>
+      p.id == productId
+        ? {
+            ...p,
+            name: nameInput.value,
+            category: categoryInput.value,
+            description: descriptionInput.value,
+            price: priceInput.value
+          }
+        : p
+    );
+  } else {
+    
+    products.push({
+      id: Date.now(),
+      name: nameInput.value,
+      category: categoryInput.value,
+      description: descriptionInput.value,
+      price: priceInput.value
+    });
+  }
+
+  localStorage.setItem("products", JSON.stringify(products));
+  window.location.href = "../dashboard/dash.html";
+});
