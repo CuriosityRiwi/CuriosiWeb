@@ -1,5 +1,10 @@
-//Se inicializa un Array vacio donde se van a agegar los nuevos administradores
-let userList = [];
+// Obtenemos lo que haya en LocalStorage (viene como texto)
+const storedUsers = localStorage.getItem('userList');
+
+// Si storedUsers tiene algo (no es null), lo convertimos a objeto con JSON.parse
+// Si es null, inicializamos como array vacío []
+let userList = storedUsers ? JSON.parse(storedUsers) : [];
+
  // Al momento de buscar el usuario para editar, en esta variable se guarda el Index de ese usuario dentro de la lista
 let editIndex = null;
 
@@ -45,16 +50,20 @@ addUserBtn.addEventListener('click', function () {
         addUserBtn.classList.add('btn-primary');
     }
 
-    
-
     renderUser();
-
-
     // limpiar el formulario despues de agregar un usuario
     document.querySelector('form').reset();
 
-    
-console.log(userList)
+    //Se crea una lista de usuarios en el localStorage 
+    localStorage.setItem('users', JSON.stringify(userList));
+
+    //Alerta emergente que notifica que agregamos un usuario
+    Swal.fire({
+        title: "Perfecto!",
+        text: "Nuevo administrador agregado",
+        icon: "success",
+        theme: 'dark'
+    });
 });
 
 // FUNCION PARA MOSTRAR LOS USUARIOS QUE VAMOS REGISTRANDO EN LA LISTA
@@ -91,6 +100,15 @@ function deleteUser(index) {
 
         // Volvemos a dibujar la tabla para que se vea el cambio
         renderUser();
+
+        localStorage.setItem('users', JSON.stringify(userList));
+
+        //Notificacion emergente que confirma el usuario eliminado
+        Swal.fire({
+        title: "Usuario Eliminado!",
+        icon: "warning",
+        theme: 'dark'
+    });
     }
 }
 
@@ -112,5 +130,16 @@ function editUser(index) {
     // Cambiamos el color y texto del botón para avisar que estamos editando
     addUserBtn.innerText = "Actualizar usuario";
     addUserBtn.classList.remove('btn-primary');
-    addUserBtn.classList.add('btn-success');
+    addUserBtn.classList.add('btn-warning');
+
+    //Alerta emergente que notifica que entramos a modo Edición
+    Swal.fire({
+        title: "Modo Edición!",
+        text: "Agrega la nueva informacion en el formulario",
+        icon: "info",
+        theme: 'dark'
+    });
 }
+
+// Llamamos a la función para que imprima los datos que recuperamos del localStorage
+renderUser();
