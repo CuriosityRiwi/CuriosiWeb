@@ -15,7 +15,7 @@ function renderProducts() {
     const row = `
             <tr>
                 <td>${product.id}</td>
-                <td><img src=".${product.img}" alt="${product.name}" width="50"></td>
+                <td><img src="${product.img}" alt="${product.name}" width="50"></td>
                 <td>${product.name}</td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
