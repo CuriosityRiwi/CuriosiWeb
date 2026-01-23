@@ -34,7 +34,7 @@ addUserBtn.addEventListener('click', function () {
         'nickName': nickValue,
         'password': passValue,
     };
-
+    
     // CONDICION PARA ESCOGER SI SE VA A AGREGAR O SE VA A EDITAR UN ADMIN
     if (editIndex === null) {
         // AGREGA: Si editIndex es null, el usuario es nuevo
@@ -54,8 +54,15 @@ addUserBtn.addEventListener('click', function () {
     // limpiar el formulario despues de agregar un usuario
     document.querySelector('form').reset();
 
-    
     localStorage.setItem('users', JSON.stringify(userList));
+
+    Swal.fire({
+        title: "Perfecto!",
+        text: "Nuevo administrador agregado",
+        icon: "success",
+        theme: 'dark'
+    });
+
 });
 
 // FUNCION PARA MOSTRAR LOS USUARIOS QUE VAMOS REGISTRANDO EN LA LISTA
@@ -78,6 +85,7 @@ function renderUser() {
         `;
         //Agregamos un elemento hijo con el contenido de "row" dentro de tableBody
         tableBody.appendChild(row);
+        
     });
 }
 
@@ -94,6 +102,12 @@ function deleteUser(index) {
         renderUser();
 
         localStorage.setItem('users', JSON.stringify(userList));
+
+        Swal.fire({
+        title: "Usuario Eliminado!",
+        icon: "warning",
+        theme: 'dark'
+    });
     }
 }
 
@@ -115,7 +129,14 @@ function editUser(index) {
     // Cambiamos el color y texto del botón para avisar que estamos editando
     addUserBtn.innerText = "Actualizar usuario";
     addUserBtn.classList.remove('btn-primary');
-    addUserBtn.classList.add('btn-success');
+    addUserBtn.classList.add('btn-warning');
+
+    Swal.fire({
+        title: "Modo Edición!",
+        text: "Agrega la nueva informacion en el formulario",
+        icon: "info",
+        theme: 'dark'
+    });
 }
 
 // Llamamos a la función para que imprima los datos que recuperamos del localStorage
