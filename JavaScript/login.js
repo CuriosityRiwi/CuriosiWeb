@@ -41,19 +41,11 @@ function loginExitoso() {
         timer: 1500
     }); 
     
-    guardarLocalStorage();
+    sessionStorage.setItem("session", "valido");
 
     setTimeout(() => {
-        window.location = "./landing.html";
+        window.location = "./dash.html";
     }, 1500);
-}
-
-function guardarLocalStorage() {
-    if (localStorage.getItem("session") === "yes") {
-        return;
-    } else {        
-        localStorage.setItem("session", "yes");
-    }
 }
 
 function loginFallido() {
