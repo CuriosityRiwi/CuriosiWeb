@@ -72,7 +72,7 @@ const renderProducts = () => {
     if (p.status !== "notPublic") {
       container.innerHTML += `
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card border rounded-2 position-relative">
+            <div class="card border rounded-2 position-relative" >
                 <button class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle" style="width: 35px; height: 35px; padding: 0;" padding: 0;">
                     <i class="bi bi-heart"></i>
                 </button>
@@ -82,7 +82,7 @@ const renderProducts = () => {
                     <h6 class="fw-bold mt-1">${p.name}</h6>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="fw-bold fs-5">$${p.price}</span>
-                        <a href="./landingInformation.html" class="btn btn-outline-dark btn-sm rounded-pill px-3 ">View Info </a>
+                        <a href="" class="btn btn-outline-dark btn-sm rounded-pill px-3 btn-moreInfo" data-id="${p.id}">View Info </a>
                     </div>
                 </div>
             </div>
@@ -93,3 +93,24 @@ const renderProducts = () => {
 
 // Ejecutar al cargar
 renderProducts();
+
+// Capturar el boton de mas info
+document.addEventListener('click', function (event) {
+    const btnMoreInfo = event.target.closest('.btn-moreInfo');
+
+    if (btnMoreInfo) {
+        event.preventDefault(); //para no cargar la pagina antes de cargar el local
+        const id = Number(btnMoreInfo.dataset.id);  //Obtener el id por medio del data
+
+        const productoSeleccionado = products.find(p => p.id == id);
+        localStorage.setItem('detalleProducto', JSON.stringify(productoSeleccionado));
+
+        window.location =  './landingInformation.html';
+    }
+
+})
+
+
+
+
+

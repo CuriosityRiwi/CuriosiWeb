@@ -58,8 +58,8 @@ function renderProducts() {
   });
 }
 
-// Detetor de Eventos
 
+// Detetor de Eventos
 document.addEventListener("click", function (event) {
 
   // Add
