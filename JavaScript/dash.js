@@ -81,3 +81,12 @@ document.addEventListener("click", function (event) {
 
 // Renderizar productos al cargar la página
 renderProducts();
+
+//En el boton de log out sale y va al login para iniciar sesion o ir a la landing
+document.addEventListener('click', (event) => {
+  const boton = event.target.closest('#btnLogOut');
+  if (boton) {
+    sessionStorage.removeItem('session');
+    window.location = './login.html';
+  }
+})

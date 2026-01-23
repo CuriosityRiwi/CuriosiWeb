@@ -38,21 +38,22 @@ function loginExitoso() {
         title: "Correcto",
         text: "You clicked the button!",
         icon: "success",
-        timer: 1500
+        timer: 1000
     }); 
     
     sessionStorage.setItem("session", "valido");
 
     setTimeout(() => {
         window.location = "./dash.html";
-    }, 1500);
+    }, 1000);
 }
 
 function loginFallido() {
     Swal.fire({
         title: "Incorrecto",
         text: "You clicked the button!",
-        icon: "error"
+        icon: "error",
+        timer: 1000
     }); 
     limpiarFormulario();
 }
