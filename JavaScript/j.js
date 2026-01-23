@@ -60,8 +60,8 @@ function render() {
               </div>
             </div>
   `;
-  // Inserta el HTML en el landing
-  addShoes.innerHTML += html;
+    // Inserta el HTML en el landing
+    addShoes.innerHTML += html;
   });
 }
 
