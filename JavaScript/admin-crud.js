@@ -1,5 +1,10 @@
-//Se inicializa un Array vacio donde se van a agegar los nuevos administradores
-let userList = [];
+// Obtenemos lo que haya en LocalStorage (viene como texto)
+const storedUsers = localStorage.getItem('userList');
+
+// Si storedUsers tiene algo (no es null), lo convertimos a objeto con JSON.parse
+// Si es null, inicializamos como array vacío []
+let userList = storedUsers ? JSON.parse(storedUsers) : [];
+
  // Al momento de buscar el usuario para editar, en esta variable se guarda el Index de ese usuario dentro de la lista
 let editIndex = null;
 
@@ -50,7 +55,7 @@ addUserBtn.addEventListener('click', function () {
     document.querySelector('form').reset();
 
     
-console.log(userList)
+    localStorage.setItem('users', JSON.stringify(userList));
 });
 
 // FUNCION PARA MOSTRAR LOS USUARIOS QUE VAMOS REGISTRANDO EN LA LISTA
@@ -87,6 +92,8 @@ function deleteUser(index) {
 
         // Volvemos a dibujar la tabla para que se vea el cambio
         renderUser();
+
+        localStorage.setItem('users', JSON.stringify(userList));
     }
 }
 
@@ -110,3 +117,6 @@ function editUser(index) {
     addUserBtn.classList.remove('btn-primary');
     addUserBtn.classList.add('btn-success');
 }
+
+// Llamamos a la función para que imprima los datos que recuperamos del localStorage
+renderUser();
