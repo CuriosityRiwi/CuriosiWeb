@@ -45,7 +45,11 @@ addUserBtn.addEventListener('click', function () {
         addUserBtn.classList.add('btn-primary');
     }
 
+    
+
     renderUser();
+
+
     // limpiar el formulario despues de agregar un usuario
     document.querySelector('form').reset();
 
