@@ -34,7 +34,6 @@ function renderProducts() {
 }
 
 // Detetor de Eventos
-
 document.addEventListener("click", function (event) {
   // Add
   if (event.target.classList.contains("add")) {
