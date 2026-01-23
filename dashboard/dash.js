@@ -1,34 +1,8 @@
 // Variables Globales
-const addListproducts = document.querySelector("#list");
+const addListproducts = document.querySelector("#productsTable");
 const addProductButton = document.querySelector(".add");
 const updateButton = document.querySelector(".update");
 const deleteButton = document.querySelector(".delete");
-
-// list prueva
-
-// let products = [
-//   {
-//     id: 2,
-//     image: "./img/icons/icon-tenis.png",
-//     name: "zapato",
-//     description: "zapato de cuero",
-//     price: 550442,
-//     stock: 5,
-//     viewStatus: "publicado",
-//   },
-//   {
-//     id: 3,
-//     image: "./img/icons/icon-tenis.png",
-//     name: "zapato",
-//     description: "zapato de cuero",
-//     price: 550442,
-//     stock: 5,
-//     viewStatus: "Notpublicado",
-//   },
-// ];
-
-// Guardo datos en localStorage
-// localStorage.setItem("products", JSON.stringify(products));
 
 // Traer datos del localStorage
 const data = localStorage.getItem("products");
@@ -41,7 +15,7 @@ function renderProducts() {
     const row = `
             <tr>
                 <td>${product.id}</td>
-                <td><img src="${product.image}" alt="${product.name}" width="50"></td>
+                <td><img src=".${product.img}" alt="${product.name}" width="50"></td>
                 <td>${product.name}</td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
@@ -55,12 +29,12 @@ function renderProducts() {
                 </td>
             </tr>
         `;
-    document.getElementById("list").innerHTML += row;
+    document.getElementById("productsTable").innerHTML += row;
   });
 }
 
-
 // Detetor de Eventos
+
 document.addEventListener("click", function (event) {
   // Add
   if (event.target.classList.contains("add")) {
