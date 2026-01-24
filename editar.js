@@ -7,7 +7,7 @@ const priceInput = document.getElementById("productPrice");
 
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
-
+console.log(productId)
 function getProducts() {
   return JSON.parse(localStorage.getItem("products")) || [];
 }
@@ -52,5 +52,5 @@ document.addEventListener("submit", (e) => {
   }
 
   localStorage.setItem("products", JSON.stringify(products));
-  window.location.href = "../dashboard/dash.html";
+  window.location.href = "./dash.html";
 });
