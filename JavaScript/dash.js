@@ -8,10 +8,7 @@ const deleteButton = document.querySelector(".delete");
 const data = localStorage.getItem("products");
 let productsList = data ? JSON.parse(data) : [];
 
-// Funcion id Juliana
-function editProduct(id) {
-  window.location.href = `../editar.html?id=${id}`;
-}
+
 
 // Para mostrar los productos
 function renderProducts() {
@@ -83,7 +80,10 @@ document.addEventListener("click", function (event) {
     renderProducts();
   }
 });
-
+// Funcion id Juliana
+function editProduct(id) {
+  window.location.href = `../editar.html?id=${id}`;
+}
 // Renderizar productos al cargar la página
 renderProducts();
 
