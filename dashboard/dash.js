@@ -47,7 +47,8 @@ document.addEventListener("click", function (event) {
   //   Update
   if (event.target.classList.contains("update")) {
     // window.open("./addProduct.html", "_self");
-    window.location = "./addProduct.html";
+    localStorage.setItem("id",`${id}`)
+    window.location = "../addProduct.html";
   }
   //   Delete
   if (event.target.classList.contains("delete")) {
