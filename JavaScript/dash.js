@@ -8,6 +8,11 @@ const deleteButton = document.querySelector(".delete");
 const data = localStorage.getItem("products");
 let productsList = data ? JSON.parse(data) : [];
 
+// Funcion id Juliana
+function editProduct(id) {
+  window.location.href = `../editar/editar.html?id=${id}`;
+}
+
 // Para mostrar los productos
 function renderProducts() {
   addListproducts.innerHTML = "";
@@ -22,7 +27,7 @@ function renderProducts() {
                 <td>${product.stock}</td>
                 <td>${product.status}</td>
                 <td>
-                    <button class="btn btn-sm btn-warning update">Edit</button>
+                    <button class="btn btn-sm btn-warning update" onclick="editProduct(${product.id})">Edit</button>
                     <button class="btn btn-sm btn-danger delete">Delete</button>
                     <button class="btn btn-sm btn-success public">Publicar</button>
                     <button class="btn btn-sm btn-secondary notPublic">Ocultar</button>
@@ -83,10 +88,10 @@ document.addEventListener("click", function (event) {
 renderProducts();
 
 //En el boton de log out sale y va al login para iniciar sesion o ir a la landing
-document.addEventListener('click', (event) => {
-  const boton = event.target.closest('#btnLogOut');
+document.addEventListener("click", (event) => {
+  const boton = event.target.closest("#btnLogOut");
   if (boton) {
-    sessionStorage.removeItem('session');
-    window.location = './login.html';
+    sessionStorage.removeItem("session");
+    window.location = "./login.html";
   }
-})
+});
