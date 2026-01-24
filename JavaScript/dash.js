@@ -10,7 +10,7 @@ let productsList = data ? JSON.parse(data) : [];
 
 // Funcion id Juliana
 function editProduct(id) {
-  window.location.href = `../editar/editar.html?id=${id}`;
+  window.location.href = `../editar.html?id=${id}`;
 }
 
 // Para mostrar los productos
